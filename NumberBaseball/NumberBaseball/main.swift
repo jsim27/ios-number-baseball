@@ -13,9 +13,33 @@ var userNumbers: [String] = []
 
 func startGame() {
     leftTrial = 9
-    comNumbers = makeRandomNumbers()
-    userNumbers = []
-    judgeNumbers()
+    runMode()
+}
+
+func runMode() {
+    if selectMode() == "1" {
+        comNumbers = makeRandomNumbers()
+           userNumbers = []
+        judgeNumbers()
+    } else if selectMode() == "2" {
+        return
+    } else {
+        runMode()
+    }
+}
+
+func selectMode() -> String {
+    let modeNumber: String?
+    print("1. 게임시작")
+    print("2. 게임종료")
+    print("원하는 기능을 선택해주세요 : ")
+    modeNumber = readLine()
+    if let modeNumber = modeNumber, modeNumber == "1" || modeNumber == "2" {
+        return modeNumber
+    } else {
+        print("입력이 잘못되었습니다")
+        return "0"
+    }
 }
 
 func makeRandomNumbers() -> [String] {
